@@ -1,5 +1,8 @@
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-uyz=&mk77+du59dt#9!^ep+d%wh$5naryksna2j@w9&5=_ffg)'
@@ -60,15 +63,16 @@ WSGI_APPLICATION = 'commentcraft.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'commentcraft',
-        'USER': 'admin', 
-        'PASSWORD': 'admin',  
-        'HOST': 'localhost',    
-        'PORT': '5432',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
-YOUTUBE_API_KEY = 'AIzaSyD_P8ZAmPjv2oLjQmyJB5zEiIY_e72MCrU'
+
+YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -6,8 +6,8 @@ from django.conf import settings
 from .models import Video, Comment
 
 def dashboard(request):
-    comment = Comment.objects.get('comments', [])
-    return render(request, 'scraper/dashboard.html', {'comments': comment})
+    comments = Comment.objects.all()
+    return render(request, 'scraper/dashboard.html', {'comments': comments})
 
 def category_comments(comment_text):
     if '?' in comment_text:
